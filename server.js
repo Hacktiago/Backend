@@ -41,6 +41,7 @@ app.post('/cars', upload.single('photo'), (req, res) => {
 
 // Endpoint para listar los vehículos registrados
 app.get('/cars', async (req, res) => {
+    console.log("Solicitud de GET recibida")
     try {
       const carDescriptionsDirectory = 'uploads/descriptions/';
   
@@ -59,7 +60,6 @@ app.get('/cars', async (req, res) => {
           photoPath: path.join('uploads/images/', path.basename(carInfo.photoPath))
         };
       }));
-  
       res.json(carDescriptions);
     } catch (error) {
       console.error('Error en la ruta /cars:', error);
