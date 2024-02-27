@@ -69,6 +69,9 @@ app.get('/cars', async (req, res) => {
 
 // Endpoint para retirar un carro usando la placa
 app.patch('/cars', (req, res) => {
+    console.log('Solicitud de patch recibida');
+    console.log("Request: ")
+    console.log(req.body)
     try {
       const { license_plate } = req.body;
   
