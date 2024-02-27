@@ -4,8 +4,10 @@ const upload = multer({ dest: 'uploads/images/' }); // Carpeta para las imágene
 const app = express();
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 // Middleware para parsear el cuerpo de la solicitud
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -16,7 +18,9 @@ const cleanLicensePlate = (licensePlate) => {
 
 // Endpoint para registrar el ingreso a un parqueadero
 app.post('/cars', upload.single('photo'), (req, res) => {
-    console.log("Entre al metodo POST")
+    console.log("Solicitud de POST recibida")
+    console.log("Request: ")
+    console.log(req.body)
   try {
     const { license_plate, color } = req.body;
     const cleanedLicensePlate = cleanLicensePlate(license_plate); // Limpiar el nombre de la placa
